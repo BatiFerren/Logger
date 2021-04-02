@@ -1,6 +1,7 @@
 #ifndef LOG_H_INCLUDED
 #define LOG_H_INCLUDED
 
+#include <fstream>
 #include <iostream>
 #include <cstdarg>
 #include <string>
@@ -15,13 +16,20 @@ enum typelog {
 class Logger
 {
 public:
+
+    std::string logLevel = "INFO";
+
+    //std::string logMessage;
+
     Logger();
 
-    Logger(typelog type);
+    //Logger(typelog type);
 
     virtual ~Logger();
 
     Logger(const Logger&);
+
+    Logger& operator()(typelog type);
 
     Logger& operator=(const Logger&) {return *this;};
 
@@ -29,12 +37,10 @@ public:
 
     static Logger getLogger();
 
+    static Logger getLogger(const std::string fName);
+
 private:
     static Logger* m_pThis;
-
-    static std::string logLevel;
-
-    //typelog msglevel = INFO;
 
 };
 

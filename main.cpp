@@ -52,7 +52,7 @@ void f3() {
 
 int main()
 {
-    auto logger = Logger::getLogger(); // Log to console
+    auto logger = Logger::getLogger("log.txt"); // Log to console
     // Console output: 23.02.2020 18:06:06; INFO; (1020): Starting the app
     logger << "Starting the app"; // Default log level INFO
 
