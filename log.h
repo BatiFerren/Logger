@@ -3,7 +3,6 @@
 
 #include <fstream>
 #include <iostream>
-#include <cstdarg>
 #include <string>
 
 enum typelog {
@@ -17,13 +16,11 @@ class Logger
 {
 public:
 
-    std::string logLevel = "INFO";
+    static std::string logLevel;
 
-    //std::string logMessage;
+    static std::string prefix;
 
     Logger();
-
-    //Logger(typelog type);
 
     virtual ~Logger();
 
@@ -35,12 +32,19 @@ public:
 
     Logger& operator<<(const std::string& sMessage);
 
+    Logger& operator<<(const double& sDouble);
+
     static Logger getLogger();
 
-    static Logger getLogger(const std::string fName);
+    static Logger getLogger(std::string fName);
+
+    static Logger getLogger(std::string fName, std::string prefixName);
 
 private:
     static Logger* m_pThis;
+
+    static std::ofstream m_Logfile;
+
 
 };
 
